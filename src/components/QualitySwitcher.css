@@ -1,0 +1,47 @@
+.quality-switcher {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.quality-option {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #21262d;
+  background: #161b22;
+  color: #9ca3af;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quality-option:hover {
+  background: #1f2937;
+  color: #e5e7eb;
+  border-color: #374151;
+}
+
+.quality-option.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+  box-shadow: 0 4px 12px -2px rgba(37, 99, 235, 0.4);
+}
+
+@media (max-width: 480px) {
+  .quality-option {
+    padding: 8px 14px;
+    min-height: 40px;
+    font-size: 0.85rem;
+  }
+
+  .quality-switcher {
+    gap: 8px;
+  }
+}
