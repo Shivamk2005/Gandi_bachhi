@@ -8,6 +8,7 @@ function App() {
   const [selectedId, setSelectedId] = useState(episodes[0]?.id ?? null)
   const [quality, setQuality] = useState('1080p')
   const [showGreeting, setShowGreeting] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const selected = episodes.find((ep) => ep.id === selectedId)
 
@@ -24,6 +25,7 @@ function App() {
 
   const handleEpisodeChange = (id) => {
     setSelectedId(id)
+    setSidebarOpen(false)
     const ep = episodes.find((e) => e.id === id)
     if (ep) {
       const available = Object.keys(ep.qualities)
@@ -34,7 +36,19 @@ function App() {
 
   return (
     <div className="app">
-      <aside className="sidebar">
+      <button
+        className="mobile-menu-btn"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+        aria-label="Toggle menu"
+      >
+        <span className={`hamburger ${sidebarOpen ? 'open' : ''}`}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+
+      <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <h1>Off Campus</h1>
           <p>Episodes</p>
@@ -52,6 +66,8 @@ function App() {
           ))}
         </nav>
       </aside>
+
+      {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
 
       <main className="player-area">
         {selected ? (
